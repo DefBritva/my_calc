@@ -18,7 +18,7 @@ class MainApp extends StatelessWidget {
       child: MaterialApp(
         routes: {
           'home': (context) => MainWidget(),
-          'expanded': (context) => SecondMainWidget()
+          'expanded': (context) => LandScapeModeWidget()
         },
         initialRoute: 'home',
         debugShowCheckedModeBanner: false,
@@ -28,48 +28,74 @@ class MainApp extends StatelessWidget {
   }
 }
 
-class MainWidget extends StatelessWidget {
+class MainWidget extends StatefulWidget {
   const MainWidget({
     super.key,
   });
 
   @override
+  State<MainWidget> createState() => _MainWidgetState();
+}
+
+class _MainWidgetState extends State<MainWidget> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-            vertical: MediaQuery.of(context).size.height * 0.05,
-            horizontal: MediaQuery.of(context).size.width * 0.05),
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.bottomRight,
-              height: MediaQuery.of(context).size.height * 0.2,
-              child: Selector<Model, String>(
-                builder: (context, value, _) => FittedBox(
-                  child: Text(
-                    value,
-                    style: const TextStyle(color: Colors.white, fontSize: 60),
-                  ),
-                ),
-                selector: (_, model) => model.equation,
-              ),
-            ),
-            Expanded(child: Divider()),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.65,
-              child: CalculatorButtonsWidget(),
-            ),
-          ],
-        ),
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          var isPortraitMode = orientation == Orientation.portrait;
+          if (isPortraitMode)
+            return PortraitModeWidget();
+          else
+            return LandScapeModeWidget();
+        },
       ),
     );
   }
 }
 
-class CalculatorButtonsWidget extends StatelessWidget {
-  const CalculatorButtonsWidget({
+class PortraitModeWidget extends StatelessWidget {
+  const PortraitModeWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.height * 0.05,
+          horizontal: MediaQuery.of(context).size.width * 0.05),
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.bottomRight,
+            height: MediaQuery.of(context).size.height * 0.2,
+            child: Selector<Model, String>(
+              builder: (context, value, _) => FittedBox(
+                child: Text(
+                  value,
+                  style: const TextStyle(color: Colors.white, fontSize: 60),
+                ),
+              ),
+              selector: (_, model) => model.equation,
+            ),
+          ),
+          Expanded(
+            child: Divider(),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.65,
+            child: CalculatorButtonsWidgetPortrait(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CalculatorButtonsWidgetPortrait extends StatelessWidget {
+  const CalculatorButtonsWidgetPortrait({
     super.key,
   });
 
@@ -234,5 +260,284 @@ class CalculatorButtonsWidget extends StatelessWidget {
         ),
       ]),
     ]);
+  }
+}
+
+class CalculatorButtonsWidgetLandscope extends StatelessWidget {
+  const CalculatorButtonsWidgetLandscope({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final model = context.read<Model>();
+    return Padding(
+        padding: EdgeInsets.only(bottom: 20),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(),
+              child: Row(
+                children: [
+                  OperationButtonWidgetLandScope(
+                      buttonSymbol: '()',
+                      buttonColor: Colors.orange,
+                      textColor: Colors.white,
+                      operation: () => () {}),
+                  OperationButtonWidgetLandScope(
+                      buttonSymbol: ')',
+                      buttonColor: Colors.orange,
+                      textColor: Colors.white,
+                      operation: () => () {}),
+                  OperationButtonWidgetLandScope(
+                    buttonSymbol: 'mc',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {},
+                    fontSize: 19,
+                  ),
+                  OperationButtonWidgetLandScope(
+                    buttonSymbol: 'm+',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {},
+                    fontSize: 18,
+                  ),
+                  OperationButtonWidgetLandScope(
+                      buttonSymbol: 'm-',
+                      buttonColor: Colors.orange,
+                      textColor: Colors.white,
+                      operation: () => () {}),
+                  OperationButtonWidgetLandScope(
+                      buttonSymbol: 'AC',
+                      buttonColor: Colors.orange,
+                      textColor: Colors.white,
+                      operation: () => () {}),
+                  OperationButtonWidgetLandScope(
+                      buttonSymbol: '+/-',
+                      buttonColor: Colors.orange,
+                      textColor: Colors.white,
+                      operation: () => () {}),
+                  OperationButtonWidgetLandScope(
+                      buttonSymbol: '%',
+                      buttonColor: Colors.orange,
+                      textColor: Colors.white,
+                      operation: () => () {}),
+                  OperationButtonWidgetLandScope(
+                      buttonSymbol: '/',
+                      buttonColor: Colors.orange,
+                      textColor: Colors.white,
+                      operation: () => () {}),
+                ],
+              ),
+            ),
+            Row(
+              children: [
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '2^nd',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'x^2',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'x^3',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'x^y',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'e^x',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '7',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '8',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '9',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'x',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+              ],
+            ),
+            Row(
+              children: [
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '1/x',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'x^1/2',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'x^1/3',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'x^1/y',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'ln',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '4',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '5',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '6',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '-',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+              ],
+            ),
+            Row(
+              children: [
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'x!',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'sin',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {},
+                    fontSize: 12.3),
+                OperationButtonWidgetLandScope(
+                  buttonSymbol: 'cos',
+                  buttonColor: Colors.orange,
+                  textColor: Colors.white,
+                  operation: () => () {},
+                  fontSize: 12.3,
+                ),
+                OperationButtonWidgetLandScope(
+                  buttonSymbol: 'tan',
+                  buttonColor: Colors.orange,
+                  textColor: Colors.white,
+                  operation: () => () {},
+                  fontSize: 12.3,
+                ),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'e',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '1',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '2',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '3',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '+',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+              ],
+            ),
+            Row(
+              children: [
+                OperationButtonWidgetLandScope(
+                  buttonSymbol: 'Rad',
+                  buttonColor: Colors.orange,
+                  textColor: Colors.white,
+                  operation: () => () {},
+                  fontSize: 12.3,
+                ),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'sinh',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {},
+                    fontSize: 12.3),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'cosh',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {},
+                    fontSize: 12.3),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'tanh',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {},
+                    fontSize: 12.3),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: 'pi',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '0',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '0',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '.',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+                OperationButtonWidgetLandScope(
+                    buttonSymbol: '=',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => () {}),
+              ],
+            )
+          ],
+        ));
   }
 }

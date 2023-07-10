@@ -95,3 +95,43 @@ class OperationButtonWidget extends StatelessWidget {
     );
   }
 }
+
+class OperationButtonWidgetLandScope extends StatelessWidget {
+  OperationButtonWidgetLandScope(
+      {super.key,
+      required this.buttonSymbol,
+      required this.buttonColor,
+      required this.textColor,
+      required this.operation,
+      this.fontSize});
+  final String buttonSymbol;
+  final Color buttonColor;
+  final Color textColor;
+  double? fontSize;
+  final void Function()? operation;
+
+  @override
+  Widget build(BuildContext context) {
+    if (fontSize == null) fontSize = 20;
+    var _size = MediaQuery.of(context).size;
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+          _size.width * 0.01, _size.height * 0.01, 0, _size.height * 0.01),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.13,
+        width: MediaQuery.of(context).size.width * 0.1,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100)),
+              backgroundColor: buttonColor),
+          onPressed: operation,
+          child: Text(
+            buttonSymbol,
+            style: TextStyle(fontSize: fontSize, color: textColor),
+          ),
+        ),
+      ),
+    );
+  }
+}
