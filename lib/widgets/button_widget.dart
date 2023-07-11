@@ -96,17 +96,19 @@ class OperationButtonWidget extends StatelessWidget {
   }
 }
 
-class OperationButtonWidgetLandScope extends StatelessWidget {
-  OperationButtonWidgetLandScope(
+class OperationButtonWidgetLandScape extends StatelessWidget {
+  OperationButtonWidgetLandScape(
       {super.key,
       required this.buttonSymbol,
       required this.buttonColor,
       required this.textColor,
       required this.operation,
-      this.fontSize});
+      this.fontSize,
+      this.image});
   final String buttonSymbol;
   final Color buttonColor;
   final Color textColor;
+  final Image? image;
   double? fontSize;
   final void Function()? operation;
 
@@ -118,19 +120,24 @@ class OperationButtonWidgetLandScope extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(
           _size.width * 0.01, _size.height * 0.01, 0, _size.height * 0.01),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.13,
-        width: MediaQuery.of(context).size.width * 0.1,
+        height: _size.height * 0.13,
+        width: _size.width * 0.1,
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100)),
-              backgroundColor: buttonColor),
-          onPressed: operation,
-          child: Text(
-            buttonSymbol,
-            style: TextStyle(fontSize: fontSize, color: textColor),
-          ),
-        ),
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100)),
+                backgroundColor: buttonColor),
+            onPressed: operation,
+            child: image != null
+                ? Container(
+                    alignment: Alignment.center,
+                    width: _size.width * 0.042,
+                    height: _size.width * 0.05,
+                    child: image)
+                : Text(
+                    buttonSymbol,
+                    style: TextStyle(fontSize: fontSize, color: textColor),
+                  )),
       ),
     );
   }
