@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_calc/bloc/calculator_bloc.dart';
 
 import 'land_scape_widget.dart';
 import 'portrait_mode_widget.dart';
@@ -17,15 +19,18 @@ class _MainWidgetState extends State<MainWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: OrientationBuilder(
-        builder: (context, orientation) {
-          var isPortraitMode = orientation == Orientation.portrait;
-          if (isPortraitMode) {
-            return const PortraitModeWidget();
-          } else {
-            return const LandScapeModeWidget();
-          }
-        },
+      body: BlocProvider(
+        create: (context) => CalculatorBloc(),
+        child: OrientationBuilder(
+          builder: (context, orientation) {
+            var isPortraitMode = orientation == Orientation.portrait;
+            if (isPortraitMode) {
+              return const PortraitModeWidget();
+            } else {
+              return const LandScapeModeWidget();
+            }
+          },
+        ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_calc/ui/widgets/calc_model.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_calc/bloc/calculator_bloc.dart';
 
 class NumberButtonWidget extends StatelessWidget {
   const NumberButtonWidget(
@@ -21,7 +21,8 @@ class NumberButtonWidget extends StatelessWidget {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               shape: const CircleBorder(), backgroundColor: buttonColor),
-          onPressed: () => context.read<Model>().onPressed(buttonSymbol),
+          onPressed: () => BlocProvider.of<CalculatorBloc>(context)
+              .add(NumberButtonPressed(symbol: buttonSymbol)),
           child: Text(
             buttonSymbol,
             style: TextStyle(fontSize: 30, color: textColor),
@@ -97,14 +98,15 @@ class OperationButtonWidget extends StatelessWidget {
 }
 
 class OperationButtonWidgetLandScape extends StatelessWidget {
-  OperationButtonWidgetLandScape(
-      {super.key,
-      required this.buttonSymbol,
-      required this.buttonColor,
-      required this.textColor,
-      required this.operation,
-      this.fontSize,
-      this.image});
+  OperationButtonWidgetLandScape({
+    super.key,
+    required this.buttonSymbol,
+    required this.buttonColor,
+    required this.textColor,
+    required this.operation,
+    this.fontSize,
+    this.image,
+  });
   final String buttonSymbol;
   final Color buttonColor;
   final Color textColor;
@@ -173,7 +175,8 @@ class NumberButtonWidgetLandScape extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100)),
                 backgroundColor: buttonColor),
-            onPressed: () => context.read<Model>().onPressed(buttonSymbol),
+            onPressed: () => BlocProvider.of<CalculatorBloc>(context)
+                .add(NumberButtonPressed(symbol: buttonSymbol)),
             child: image != null
                 ? Container(
                     alignment: Alignment.center,
@@ -207,7 +210,7 @@ class ActionButtonWidgetLandScape extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (fontSize == null) fontSize = 20;
+    fontSize ??= 20;
     var _size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.fromLTRB(

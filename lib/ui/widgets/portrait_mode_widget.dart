@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_calc/bloc/calculator_bloc.dart';
 import 'package:my_calc/ui/widgets/button_widget.dart';
-import 'package:my_calc/ui/widgets/calc_model.dart';
-import 'package:provider/provider.dart';
 
 class PortraitModeWidget extends StatelessWidget {
   const PortraitModeWidget({
@@ -19,14 +19,13 @@ class PortraitModeWidget extends StatelessWidget {
           Container(
             alignment: Alignment.bottomRight,
             height: MediaQuery.of(context).size.height * 0.2,
-            child: Selector<Model, String>(
-              builder: (context, value, _) => FittedBox(
-                child: Text(
-                  value,
+            child: BlocBuilder<CalculatorBloc, CalculatorState>(
+              builder: (context, state) {
+                return Text(
+                  state.equation,
                   style: const TextStyle(color: Colors.white, fontSize: 60),
-                ),
-              ),
-              selector: (_, model) => model.equation,
+                );
+              },
             ),
           ),
           const Expanded(
@@ -49,32 +48,35 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = context.read<Model>();
     return Table(children: [
       TableRow(children: [
         ActionButtonWidget(
           buttonSymbol: 'AC',
           buttonColor: const Color.fromRGBO(224, 224, 224, 1),
           textColor: Colors.black.withOpacity(0.9),
-          action: () => model.clear(),
+          action: () => BlocProvider.of<CalculatorBloc>(context)
+              .add(ClearButtonPressed()),
         ),
         ActionButtonWidget(
           buttonSymbol: '+/-',
           buttonColor: const Color.fromRGBO(224, 224, 224, 1),
           textColor: Colors.black.withOpacity(0.9),
-          action: () => model.changeSign(),
+          action: () => BlocProvider.of<CalculatorBloc>(context)
+              .add(ChangeSignButtonPressed()),
         ),
         ActionButtonWidget(
           buttonSymbol: '%',
           buttonColor: const Color.fromRGBO(224, 224, 224, 1),
           textColor: Colors.black.withOpacity(0.9),
-          action: () => model.calculateOnePercent(),
+          action: () => BlocProvider.of<CalculatorBloc>(context)
+              .add(CalculateOnePercentButtonPressed()),
         ),
         OperationButtonWidget(
           buttonSymbol: '÷',
           buttonColor: Colors.orange,
           textColor: Colors.white,
-          operation: () => model.division(),
+          operation: () => BlocProvider.of<CalculatorBloc>(context)
+              .add(DivisionButtonPressed()),
         ),
       ]),
       TableRow(children: [
@@ -97,7 +99,8 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
           buttonSymbol: 'x',
           buttonColor: Colors.orange,
           textColor: Colors.white,
-          operation: () => model.multiply(),
+          operation: () => BlocProvider.of<CalculatorBloc>(context)
+              .add(MultiplyButtonPressed()),
         ),
       ]),
       TableRow(children: [
@@ -120,7 +123,8 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
           buttonSymbol: '-',
           buttonColor: Colors.orange,
           textColor: Colors.white,
-          operation: () => model.subtract(),
+          operation: () => BlocProvider.of<CalculatorBloc>(context)
+              .add(SubtractButtonPressed()),
         ),
       ]),
       TableRow(children: [
@@ -143,7 +147,8 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
           buttonSymbol: '+',
           buttonColor: Colors.orange,
           textColor: Colors.white,
-          operation: () => model.sum(),
+          operation: () =>
+              BlocProvider.of<CalculatorBloc>(context).add(SumButtonPressed()),
         )
       ]),
       TableRow(children: [
@@ -163,7 +168,8 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(40),
                           topLeft: Radius.circular(40)))),
-              onPressed: () => model.onPressed('0'),
+              onPressed: () => BlocProvider.of<CalculatorBloc>(context)
+                  .add(NumberButtonPressed(symbol: '0')),
               child: const Text(
                 '0',
                 style: TextStyle(fontSize: 35),
@@ -204,7 +210,8 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
           buttonSymbol: '=',
           buttonColor: Colors.orange,
           textColor: Colors.white,
-          operation: () => model.showResult(),
+          operation: () => BlocProvider.of<CalculatorBloc>(context)
+              .add(ShowResultButtonPressed()),
         ),
       ]),
     ]);

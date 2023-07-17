@@ -1,129 +1,71 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:my_calc/bloc/calculator_logic.dart';
 part 'calculator_event.dart';
 part 'calculator_state.dart';
 
 class CalculatorBloc extends Bloc<CalculatorEvent, CalculatorState> {
-  final model = Model();
+  final model = CalculatorLogicModel();
   CalculatorBloc()
-      : super(CalculatorInitialState(equation: '0', currentResult: '0')) {
-    on<InitialEvent>((event, emit) {
-      emit(CalculatorInitialState(equation: '0', currentResult: '0'));
-    });
-    on<NumberButtonPressed>((event, emit) {
-      emit(model.onPressed(buttonSymbol));
-    });
-  }
-}
-
-class Model {
-  String equation = '0';
-  String currentResult = '0';
-  String buttonSymbol = '';
-  late num _num1;
-  late num _num2;
-  bool isCreated = false;
-  bool isOperationButtonPressed = false;
-  String currentOperation = '';
-
-  void onPressed(String buttonSymbol) {
-    if (!isCreated || isOperationButtonPressed) {
-      equation = '';
-      isOperationButtonPressed = false;
-    }
-    equation += buttonSymbol;
-    isCreated = true;
-    // notifyListeners();
+      : super(
+          const CalculatorInitialState(
+            equation: '0',
+          ),
+        ) {
+    on<NumberButtonPressed>(_numberIsPressed);
+    on<ClearButtonPressed>(_clearIsPressed);
+    on<ChangeSignButtonPressed>(_changeSignIsPresed);
+    on<CalculateOnePercentButtonPressed>(_calculateOnePercentIsPressed);
+    on<ShowResultButtonPressed>(_showResultIsPressed);
+    on<SumButtonPressed>(_sumIsPressed);
+    on<SubtractButtonPressed>(_subtractIsPressed);
+    on<MultiplyButtonPressed>(_multiplyIsPressed);
+    on<DivisionButtonPressed>(_divisonIsPressed);
   }
 
-  void clear() {
-    equation = '0';
-    isCreated = false;
-    // notifyListeners();
+  _numberIsPressed(NumberButtonPressed event, Emitter<CalculatorState> emit) {
+    model.onPressed(event.symbol);
+    emit(
+      state.copyWith(
+        equation: model.equation,
+      ),
+    );
   }
 
-  void changeSign() {
-    try {
-      if (num.parse(equation) > 0) {
-        equation = '-$equation';
-      } else {
-        equation = equation.replaceFirst('-', '');
-      }
-      // notifyListeners();
-    } catch (_) {}
+  _clearIsPressed(CalculatorEvent event, Emitter<CalculatorState> emit) {
+    model.clear();
+    emit(state.copyWith(equation: model.equation));
   }
 
-  void calculateOnePercent() {
-    equation = (num.parse(equation) / 100).toString();
-    // notifyListeners();
+  _changeSignIsPresed(CalculatorEvent event, Emitter<CalculatorState> emit) {
+    model.changeSign();
+    emit(state.copyWith(equation: model.equation));
   }
 
-  void sum() {
-    try {
-      _num1 = num.parse(equation);
-      isOperationButtonPressed = true;
-      currentOperation = '+';
-    } catch (_) {}
+  _calculateOnePercentIsPressed(
+      CalculatorEvent event, Emitter<CalculatorState> emit) {
+    model.calculateOnePercent();
+    emit(state.copyWith(equation: model.equation));
   }
 
-  void subtract() {
-    try {
-      _num1 = num.parse(equation);
-      isOperationButtonPressed = true;
-      currentOperation = '-';
-    } catch (_) {}
+  _showResultIsPressed(CalculatorEvent event, Emitter<CalculatorState> emit) {
+    model.showResult();
+    emit(state.copyWith(equation: model.equation));
   }
 
-  void multiply() {
-    try {
-      _num1 = num.parse(equation);
-      isOperationButtonPressed = true;
-      currentOperation = '*';
-    } catch (_) {}
+  _sumIsPressed(CalculatorEvent event, Emitter<CalculatorState> emit) {
+    model.sum();
   }
 
-  void division() {
-    try {
-      _num1 = num.parse(equation);
-      isOperationButtonPressed = true;
-      currentOperation = '/';
-    } catch (_) {}
+  _subtractIsPressed(CalculatorEvent event, Emitter<CalculatorState> emit) {
+    model.subtract();
   }
 
-  void showResult() {
-    num? __num2 = num.tryParse(equation);
-    if (__num2 != null) {
-      _num2 = __num2;
-    } else {
-      return;
-    }
-    switch (currentOperation) {
-      case '+':
-        equation = (_num1 + _num2).toString();
-        // notifyListeners();
-        break;
-      case '-':
-        equation = (_num1 - _num2).toString();
-        // notifyListeners();
-        break;
-      case '*':
-        String _equation = (_num1 * _num2).toString();
-        if (RegExp(r'\d+.0').hasMatch(_equation)) {
-          equation = _equation.replaceAll('.0', '');
-        } else {
-          equation = _equation;
-        }
-        // notifyListeners();
-        break;
-      case '/':
-        String _equation = (_num1 / _num2).toString();
-        if (RegExp(r'\d+.0').hasMatch(_equation)) {
-          equation = _equation.replaceAll('.0', '');
-        } else {
-          equation = _equation;
-        }
-        // notifyListeners();
-        break;
-    }
+  _multiplyIsPressed(CalculatorEvent event, Emitter<CalculatorState> emit) {
+    model.multiply();
+  }
+
+  _divisonIsPressed(CalculatorEvent event, Emitter<CalculatorState> emit) {
+    model.division();
   }
 }
