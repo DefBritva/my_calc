@@ -27,10 +27,11 @@ class Model extends ChangeNotifier {
 
   void changeSign() {
     try {
-      if (num.parse(equation) > 0)
+      if (num.parse(equation) > 0) {
         equation = '-$equation';
-      else
+      } else {
         equation = equation.replaceFirst('-', '');
+      }
       notifyListeners();
     } catch (_) {}
   }
@@ -73,11 +74,12 @@ class Model extends ChangeNotifier {
   }
 
   void showResult() {
-    num? __num2 = num.tryParse(equation) ?? null;
-    if (__num2 != null)
+    num? __num2 = num.tryParse(equation);
+    if (__num2 != null) {
       _num2 = __num2;
-    else
+    } else {
       return;
+    }
     switch (currentOperation) {
       case '+':
         equation = (_num1 + _num2).toString();
