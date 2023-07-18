@@ -11,9 +11,7 @@ final class NumberButtonPressed extends CalculatorEvent {
   NumberButtonPressed({required this.symbol});
 }
 
-final class OperationButtonPressed extends CalculatorEvent {
-  OperationButtonPressed();
-}
+final class OperationButtonPressed extends CalculatorEvent {}
 
 final class ClearButtonPressed extends CalculatorEvent {}
 
@@ -21,22 +19,12 @@ final class ChangeSignButtonPressed extends CalculatorEvent {}
 
 final class CalculateOnePercentButtonPressed extends CalculatorEvent {}
 
-final class ShowResultButtonPressed extends OperationButtonPressed {
-  ShowResultButtonPressed();
-}
+final class ShowResultButtonPressed extends OperationButtonPressed {}
 
-final class SumButtonPressed extends OperationButtonPressed {
-  SumButtonPressed();
-}
+final class SumButtonPressed extends OperationButtonPressed {}
 
-final class SubtractButtonPressed extends OperationButtonPressed {
-  SubtractButtonPressed();
-}
+final class SubtractButtonPressed extends OperationButtonPressed {}
 
-final class MultiplyButtonPressed extends OperationButtonPressed {
-  MultiplyButtonPressed();
-}
+final class MultiplyButtonPressed extends OperationButtonPressed {}
 
-final class DivisionButtonPressed extends OperationButtonPressed {
-  DivisionButtonPressed();
-}
+final class DivisionButtonPressed extends OperationButtonPressed {}

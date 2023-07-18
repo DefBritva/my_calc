@@ -93,27 +93,31 @@ class CalculatorButtonsWidgetLandscope extends StatelessWidget {
                       buttonSymbol: 'AC',
                       buttonColor: const Color.fromRGBO(224, 224, 224, 1),
                       textColor: Colors.black.withOpacity(0.9),
-                      action: () => BlocProvider.of<CalculatorBloc>(context)
+                      action: () => context
+                          .read<CalculatorBloc>()
                           .add(ClearButtonPressed())),
                   ActionButtonWidgetLandScape(
                     buttonSymbol: '+/-',
                     buttonColor: const Color.fromRGBO(224, 224, 224, 1),
                     textColor: Colors.black.withOpacity(0.9),
-                    action: () => BlocProvider.of<CalculatorBloc>(context)
+                    action: () => context
+                        .read<CalculatorBloc>()
                         .add(ChangeSignButtonPressed()),
                   ),
                   ActionButtonWidgetLandScape(
                     buttonSymbol: '%',
                     buttonColor: const Color.fromRGBO(224, 224, 224, 1),
                     textColor: Colors.black.withOpacity(0.9),
-                    action: () => BlocProvider.of<CalculatorBloc>(context)
+                    action: () => context
+                        .read<CalculatorBloc>()
                         .add(CalculateOnePercentButtonPressed()),
                   ),
                   OperationButtonWidgetLandScape(
                       buttonSymbol: '/',
                       buttonColor: Colors.orange,
                       textColor: Colors.white,
-                      operation: () => BlocProvider.of<CalculatorBloc>(context)
+                      operation: () => context
+                          .read<CalculatorBloc>()
                           .add(DivisionButtonPressed())),
                 ],
               ),
@@ -170,7 +174,8 @@ class CalculatorButtonsWidgetLandscope extends StatelessWidget {
                     buttonSymbol: 'x',
                     buttonColor: Colors.orange,
                     textColor: Colors.white,
-                    operation: () => BlocProvider.of<CalculatorBloc>(context)
+                    operation: () => context
+                        .read<CalculatorBloc>()
                         .add(MultiplyButtonPressed())),
               ],
             ),
@@ -225,7 +230,8 @@ class CalculatorButtonsWidgetLandscope extends StatelessWidget {
                     buttonSymbol: '-',
                     buttonColor: Colors.orange,
                     textColor: Colors.white,
-                    operation: () => BlocProvider.of<CalculatorBloc>(context)
+                    operation: () => context
+                        .read<CalculatorBloc>()
                         .add(SubtractButtonPressed())),
               ],
             ),
@@ -280,8 +286,8 @@ class CalculatorButtonsWidgetLandscope extends StatelessWidget {
                     buttonSymbol: '+',
                     buttonColor: Colors.orange,
                     textColor: Colors.white,
-                    operation: () => BlocProvider.of<CalculatorBloc>(context)
-                        .add(SumButtonPressed())),
+                    operation: () =>
+                        context.read<CalculatorBloc>().add(SumButtonPressed())),
               ],
             ),
             Row(
@@ -335,7 +341,8 @@ class CalculatorButtonsWidgetLandscope extends StatelessWidget {
                     buttonSymbol: '=',
                     buttonColor: Colors.orange,
                     textColor: Colors.white,
-                    operation: () => BlocProvider.of<CalculatorBloc>(context)
+                    operation: () => context
+                        .read<CalculatorBloc>()
                         .add(ShowResultButtonPressed())),
               ],
             )
