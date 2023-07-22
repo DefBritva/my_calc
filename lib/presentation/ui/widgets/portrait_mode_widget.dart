@@ -19,7 +19,7 @@ class PortraitModeWidget extends StatelessWidget {
         children: [
           Container(
             alignment: Alignment.bottomRight,
-            height: MediaQuery.of(context).size.height * 0.30,
+            height: MediaQuery.of(context).size.height * 0.25,
             child: BlocBuilder<CalculatorBloc, CalculatorState>(
               builder: (context, state) {
                 return FittedBox(
@@ -31,11 +31,8 @@ class PortraitModeWidget extends StatelessWidget {
               },
             ),
           ),
-          const Expanded(
-            child: Divider(),
-          ),
           Container(
-            height: MediaQuery.of(context).size.height * 0.7,
+            height: MediaQuery.of(context).size.height * 0.75,
             width: MediaQuery.of(context).size.width * 0.9,
             child: const CalculatorButtonsWidgetPortrait(),
           ),
@@ -84,6 +81,9 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               context.read<CalculatorBloc>().add(DivisionButtonPressed()),
         ),
       ]),
+      SizedBox(
+        height: MediaQuery.of(context).size.height * 0.01,
+      ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
           buttonSymbol: '7',
@@ -108,6 +108,9 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               context.read<CalculatorBloc>().add(MultiplyButtonPressed()),
         ),
       ]),
+      SizedBox(
+        height: MediaQuery.of(context).size.height * 0.01,
+      ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
           buttonSymbol: '4',
@@ -132,6 +135,9 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               context.read<CalculatorBloc>().add(SubtractButtonPressed()),
         ),
       ]),
+      SizedBox(
+        height: MediaQuery.of(context).size.height * 0.01,
+      ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
           buttonSymbol: '1',
@@ -156,14 +162,19 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               context.read<CalculatorBloc>().add(SumButtonPressed()),
         )
       ]),
+      SizedBox(
+        height: MediaQuery.of(context).size.height * 0.01,
+      ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.003,
-              vertical: MediaQuery.of(context).size.height * 0.003),
+          padding: EdgeInsets.fromLTRB(
+              MediaQuery.of(context).size.width * 0.0,
+              MediaQuery.of(context).size.height * 0.01,
+              MediaQuery.of(context).size.width * 0,
+              MediaQuery.of(context).size.height * 0),
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.1,
-            width: MediaQuery.of(context).size.width * 0.43,
+            width: MediaQuery.of(context).size.width * 0.39,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(64, 64, 64, 1),
@@ -177,9 +188,9 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.04),
-                child: Align(
+                child: const Align(
                   alignment: AlignmentDirectional.centerStart,
-                  child: const Text(
+                  child: Text(
                     '0',
                     style: TextStyle(fontSize: 35),
                   ),
@@ -187,6 +198,9 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               ),
             ),
           ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.03,
         ),
         const NumberButtonWidget(
           buttonSymbol: '.',
@@ -201,6 +215,9 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               context.read<CalculatorBloc>().add(ShowResultButtonPressed()),
         ),
       ]),
+      SizedBox(
+        height: MediaQuery.of(context).size.height * 0.01,
+      ),
     ]);
   }
 }
