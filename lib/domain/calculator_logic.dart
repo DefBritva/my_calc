@@ -1,4 +1,6 @@
-class CalculatorLogicModel {
+part of '../presentation/bloc/calculator_bloc.dart';
+
+class _CalculatorLogicModel {
   String equation = '0';
   late num _num1;
   late num _num2;

@@ -18,10 +18,8 @@ class CalculatorState extends Equatable {
   List<Object?> get props => [equation];
 }
 
-class CalculatorInitialState extends CalculatorState {
-  const CalculatorInitialState({
-    required super.equation,
-  });
+class AppStart extends CalculatorState {
+  const AppStart({String equation = '0'}) : super(equation: equation);
 
   @override
   List<Object?> get props => [equation];

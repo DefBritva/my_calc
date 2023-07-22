@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_calc/bloc/calculator_bloc.dart';
-import 'package:my_calc/ui/widgets/button_widget.dart';
+import 'package:my_calc/presentation/ui/widgets/button_widget.dart';
+
+import '../../bloc/calculator_bloc.dart';
 
 class PortraitModeWidget extends StatelessWidget {
   const PortraitModeWidget({
@@ -21,9 +22,11 @@ class PortraitModeWidget extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.2,
             child: BlocBuilder<CalculatorBloc, CalculatorState>(
               builder: (context, state) {
-                return Text(
-                  state.equation,
-                  style: const TextStyle(color: Colors.white, fontSize: 60),
+                return FittedBox(
+                  child: Text(
+                    state.equation,
+                    style: const TextStyle(color: Colors.white, fontSize: 60),
+                  ),
                 );
               },
             ),

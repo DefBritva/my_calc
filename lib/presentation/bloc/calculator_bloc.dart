@@ -1,16 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:my_calc/bloc/calculator_logic.dart';
 part 'calculator_event.dart';
 part 'calculator_state.dart';
+part '../../domain/calculator_logic.dart';
 
 class CalculatorBloc extends Bloc<CalculatorEvent, CalculatorState> {
-  final model = CalculatorLogicModel();
+  final model = _CalculatorLogicModel();
   CalculatorBloc()
       : super(
-          const CalculatorInitialState(
-            equation: '0',
-          ),
+          const AppStart(),
         ) {
     on<NumberButtonPressed>(_numberIsPressed);
     on<ClearButtonPressed>(_clearIsPressed);

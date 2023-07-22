@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_calc/bloc/calculator_bloc.dart';
 import 'package:my_calc/res/image_res.dart';
-import 'package:my_calc/ui/widgets/button_widget.dart';
+import 'package:my_calc/presentation/ui/widgets/button_widget.dart';
+
+import '../../bloc/calculator_bloc.dart';
 
 class LandScapeModeWidget extends StatelessWidget {
   const LandScapeModeWidget({super.key});

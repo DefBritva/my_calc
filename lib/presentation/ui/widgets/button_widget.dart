@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_calc/bloc/calculator_bloc.dart';
+
+import '../../bloc/calculator_bloc.dart';
 
 class NumberButtonWidget extends StatelessWidget {
   const NumberButtonWidget(
