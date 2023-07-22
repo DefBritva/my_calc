@@ -12,14 +12,14 @@ class PortraitModeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).size.height * 0.05,
-          horizontal: MediaQuery.of(context).size.width * 0.05),
+      padding: EdgeInsets.only(
+          right: MediaQuery.of(context).size.width * 0.05,
+          left: MediaQuery.of(context).size.width * 0.05),
       child: Column(
         children: [
           Container(
             alignment: Alignment.bottomRight,
-            height: MediaQuery.of(context).size.height * 0.2,
+            height: MediaQuery.of(context).size.height * 0.30,
             child: BlocBuilder<CalculatorBloc, CalculatorState>(
               builder: (context, state) {
                 return FittedBox(
@@ -35,7 +35,8 @@ class PortraitModeWidget extends StatelessWidget {
             child: Divider(),
           ),
           Container(
-            height: MediaQuery.of(context).size.height * 0.65,
+            height: MediaQuery.of(context).size.height * 0.7,
+            width: MediaQuery.of(context).size.width * 0.9,
             child: const CalculatorButtonsWidgetPortrait(),
           ),
         ],
@@ -51,8 +52,8 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Table(children: [
-      TableRow(children: [
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         ActionButtonWidget(
           buttonSymbol: 'AC',
           buttonColor: const Color.fromRGBO(224, 224, 224, 1),
@@ -83,7 +84,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               context.read<CalculatorBloc>().add(DivisionButtonPressed()),
         ),
       ]),
-      TableRow(children: [
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
           buttonSymbol: '7',
           buttonColor: Color.fromRGBO(64, 64, 64, 1),
@@ -107,7 +108,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               context.read<CalculatorBloc>().add(MultiplyButtonPressed()),
         ),
       ]),
-      TableRow(children: [
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
           buttonSymbol: '4',
           buttonColor: Color.fromRGBO(64, 64, 64, 1),
@@ -131,7 +132,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               context.read<CalculatorBloc>().add(SubtractButtonPressed()),
         ),
       ]),
-      TableRow(children: [
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
           buttonSymbol: '1',
           buttonColor: Color.fromRGBO(64, 64, 64, 1),
@@ -155,53 +156,34 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               context.read<CalculatorBloc>().add(SumButtonPressed()),
         )
       ]),
-      TableRow(children: [
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Padding(
-          padding: EdgeInsets.fromLTRB(
-              MediaQuery.of(context).size.height * 0.005,
-              MediaQuery.of(context).size.height * 0.005,
-              MediaQuery.of(context).size.height * 0,
-              MediaQuery.of(context).size.height * 0.005),
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.003,
+              vertical: MediaQuery.of(context).size.height * 0.003),
           child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.13,
+            height: MediaQuery.of(context).size.height * 0.1,
+            width: MediaQuery.of(context).size.width * 0.43,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(64, 64, 64, 1),
                   side: const BorderSide(color: Color.fromRGBO(64, 64, 64, 1)),
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(40),
-                          topLeft: Radius.circular(40)))),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(
+                          MediaQuery.of(context).size.width * 0.1)))),
               onPressed: () => context
                   .read<CalculatorBloc>()
                   .add(NumberButtonPressed(symbol: '0')),
-              child: const Text(
-                '0',
-                style: TextStyle(fontSize: 35),
-              ),
-            ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(
-              MediaQuery.of(context).size.height * 0,
-              MediaQuery.of(context).size.height * 0.005,
-              MediaQuery.of(context).size.height * 0.005,
-              MediaQuery.of(context).size.height * 0.005),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.13,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(64, 64, 64, 1),
-                  side: const BorderSide(color: Color.fromRGBO(64, 64, 64, 1)),
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(40),
-                          topRight: Radius.circular(40)))),
-              onPressed: () {},
-              child: const Text(
-                '',
-                style: TextStyle(fontSize: 35),
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * 0.04),
+                child: Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: const Text(
+                    '0',
+                    style: TextStyle(fontSize: 35),
+                  ),
+                ),
               ),
             ),
           ),

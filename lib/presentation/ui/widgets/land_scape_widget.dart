@@ -56,72 +56,69 @@ class CalculatorButtonsWidgetLandscope extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 20),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(),
-              child: Row(
-                children: [
-                  NumberButtonWidgetLandScape(
-                    buttonSymbol: '(',
+            Row(
+              children: [
+                NumberButtonWidgetLandScape(
+                  buttonSymbol: '(',
+                  buttonColor: const Color.fromRGBO(32, 32, 32, 1),
+                  textColor: Colors.white,
+                ),
+                NumberButtonWidgetLandScape(
+                  buttonSymbol: ')',
+                  buttonColor: const Color.fromRGBO(32, 32, 32, 1),
+                  textColor: Colors.white,
+                ),
+                OperationButtonWidgetLandScape(
+                  buttonSymbol: '10^x',
+                  buttonColor: const Color.fromRGBO(32, 32, 32, 1),
+                  textColor: Colors.white,
+                  operation: () => () {},
+                  fontSize: 19,
+                  image: ImageRes.image10x,
+                ),
+                OperationButtonWidgetLandScape(
+                  buttonSymbol: 'EE',
+                  buttonColor: const Color.fromRGBO(32, 32, 32, 1),
+                  textColor: Colors.white,
+                  operation: () => () {},
+                  fontSize: 18,
+                ),
+                OperationButtonWidgetLandScape(
+                    buttonSymbol: 'lg',
                     buttonColor: const Color.fromRGBO(32, 32, 32, 1),
                     textColor: Colors.white,
-                  ),
-                  NumberButtonWidgetLandScape(
-                    buttonSymbol: ')',
-                    buttonColor: const Color.fromRGBO(32, 32, 32, 1),
-                    textColor: Colors.white,
-                  ),
-                  OperationButtonWidgetLandScape(
-                    buttonSymbol: '10^x',
-                    buttonColor: const Color.fromRGBO(32, 32, 32, 1),
-                    textColor: Colors.white,
-                    operation: () => () {},
-                    fontSize: 19,
-                    image: ImageRes.image10x,
-                  ),
-                  OperationButtonWidgetLandScape(
-                    buttonSymbol: 'EE',
-                    buttonColor: const Color.fromRGBO(32, 32, 32, 1),
-                    textColor: Colors.white,
-                    operation: () => () {},
-                    fontSize: 18,
-                  ),
-                  OperationButtonWidgetLandScape(
-                      buttonSymbol: 'lg',
-                      buttonColor: const Color.fromRGBO(32, 32, 32, 1),
-                      textColor: Colors.white,
-                      operation: () => () {}),
-                  ActionButtonWidgetLandScape(
-                      buttonSymbol: 'AC',
-                      buttonColor: const Color.fromRGBO(224, 224, 224, 1),
-                      textColor: Colors.black.withOpacity(0.9),
-                      action: () => context
-                          .read<CalculatorBloc>()
-                          .add(ClearButtonPressed())),
-                  ActionButtonWidgetLandScape(
-                    buttonSymbol: '+/-',
+                    operation: () => () {}),
+                ActionButtonWidgetLandScape(
+                    buttonSymbol: 'AC',
                     buttonColor: const Color.fromRGBO(224, 224, 224, 1),
                     textColor: Colors.black.withOpacity(0.9),
                     action: () => context
                         .read<CalculatorBloc>()
-                        .add(ChangeSignButtonPressed()),
-                  ),
-                  ActionButtonWidgetLandScape(
-                    buttonSymbol: '%',
-                    buttonColor: const Color.fromRGBO(224, 224, 224, 1),
-                    textColor: Colors.black.withOpacity(0.9),
-                    action: () => context
+                        .add(ClearButtonPressed())),
+                ActionButtonWidgetLandScape(
+                  buttonSymbol: '+/-',
+                  buttonColor: const Color.fromRGBO(224, 224, 224, 1),
+                  textColor: Colors.black.withOpacity(0.9),
+                  action: () => context
+                      .read<CalculatorBloc>()
+                      .add(ChangeSignButtonPressed()),
+                ),
+                ActionButtonWidgetLandScape(
+                  buttonSymbol: '%',
+                  buttonColor: const Color.fromRGBO(224, 224, 224, 1),
+                  textColor: Colors.black.withOpacity(0.9),
+                  action: () => context
+                      .read<CalculatorBloc>()
+                      .add(CalculateOnePercentButtonPressed()),
+                ),
+                OperationButtonWidgetLandScape(
+                    buttonSymbol: '/',
+                    buttonColor: Colors.orange,
+                    textColor: Colors.white,
+                    operation: () => context
                         .read<CalculatorBloc>()
-                        .add(CalculateOnePercentButtonPressed()),
-                  ),
-                  OperationButtonWidgetLandScape(
-                      buttonSymbol: '/',
-                      buttonColor: Colors.orange,
-                      textColor: Colors.white,
-                      operation: () => context
-                          .read<CalculatorBloc>()
-                          .add(DivisionButtonPressed())),
-                ],
-              ),
+                        .add(DivisionButtonPressed())),
+              ],
             ),
             Row(
               children: [

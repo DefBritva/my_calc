@@ -16,9 +16,12 @@ class NumberButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.005),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.height * 0.003,
+          vertical: MediaQuery.of(context).size.height * 0.003),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.13,
+        height: MediaQuery.of(context).size.height * 0.12,
+        width: MediaQuery.of(context).size.width * 0.1,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               shape: const CircleBorder(), backgroundColor: buttonColor),
@@ -49,9 +52,12 @@ class ActionButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.005),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.003,
+          vertical: MediaQuery.of(context).size.height * 0.003),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.13,
+        height: MediaQuery.of(context).size.height * 0.12,
+        width: MediaQuery.of(context).size.width * 0.1,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               shape: const CircleBorder(), backgroundColor: buttonColor),
@@ -81,9 +87,12 @@ class OperationButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.005),
+      padding: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.009,
+          vertical: MediaQuery.of(context).size.height * 0.003),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.13,
+        height: MediaQuery.of(context).size.height * 0.12,
+        width: MediaQuery.of(context).size.width * 0.1,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               shape: const CircleBorder(), backgroundColor: buttonColor),
