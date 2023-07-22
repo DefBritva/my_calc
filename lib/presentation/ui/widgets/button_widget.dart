@@ -17,7 +17,7 @@ class NumberButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
-          MediaQuery.of(context).size.width * 0,
+          MediaQuery.of(context).size.width * 0.01,
           MediaQuery.of(context).size.height * 0.005,
           MediaQuery.of(context).size.width * 0.003,
           MediaQuery.of(context).size.height * 0),
@@ -55,7 +55,7 @@ class ActionButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
-          MediaQuery.of(context).size.width * 0,
+          MediaQuery.of(context).size.width * 0.01,
           MediaQuery.of(context).size.height * 0.003,
           MediaQuery.of(context).size.width * 0.003,
           MediaQuery.of(context).size.height * 0),
@@ -92,7 +92,7 @@ class OperationButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
-          MediaQuery.of(context).size.width * 0,
+          MediaQuery.of(context).size.width * 0.01,
           MediaQuery.of(context).size.height * 0.003,
           MediaQuery.of(context).size.width * 0.003,
           MediaQuery.of(context).size.height * 0),

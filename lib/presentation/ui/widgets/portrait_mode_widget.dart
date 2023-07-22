@@ -82,7 +82,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
         ),
       ]),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0.01,
+        height: MediaQuery.of(context).size.height * 0,
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
@@ -109,7 +109,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
         ),
       ]),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0.01,
+        height: MediaQuery.of(context).size.height * 0,
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
@@ -136,7 +136,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
         ),
       ]),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0.01,
+        height: MediaQuery.of(context).size.height * 0,
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
@@ -163,7 +163,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
         )
       ]),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0.01,
+        height: MediaQuery.of(context).size.height * 0,
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Padding(
@@ -174,7 +174,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
               MediaQuery.of(context).size.height * 0),
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.1,
-            width: MediaQuery.of(context).size.width * 0.39,
+            width: MediaQuery.of(context).size.width * 0.409,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(64, 64, 64, 1),
@@ -216,7 +216,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
         ),
       ]),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0.01,
+        height: MediaQuery.of(context).size.height * 0,
       ),
     ]);
   }
