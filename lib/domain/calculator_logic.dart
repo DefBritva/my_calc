@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
+part of '../presentation/bloc/calculator_bloc.dart';
 
-class Model extends ChangeNotifier {
+class _CalculatorLogicModel {
   String equation = '0';
-  String currentResult = '0';
   late num _num1;
   late num _num2;
   bool isCreated = false;
@@ -16,28 +15,25 @@ class Model extends ChangeNotifier {
     }
     equation += buttonSymbol;
     isCreated = true;
-    notifyListeners();
   }
 
   void clear() {
     equation = '0';
     isCreated = false;
-    notifyListeners();
   }
 
   void changeSign() {
     try {
-      if (num.parse(equation) > 0)
+      if (num.parse(equation) > 0) {
         equation = '-$equation';
-      else
+      } else {
         equation = equation.replaceFirst('-', '');
-      notifyListeners();
+      }
     } catch (_) {}
   }
 
   void calculateOnePercent() {
     equation = (num.parse(equation) / 100).toString();
-    notifyListeners();
   }
 
   void sum() {
@@ -73,19 +69,20 @@ class Model extends ChangeNotifier {
   }
 
   void showResult() {
-    num? __num2 = num.tryParse(equation) ?? null;
-    if (__num2 != null)
+    num? __num2 = num.tryParse(equation);
+    if (__num2 != null) {
       _num2 = __num2;
-    else
+    } else {
       return;
+    }
     switch (currentOperation) {
       case '+':
         equation = (_num1 + _num2).toString();
-        notifyListeners();
+
         break;
       case '-':
         equation = (_num1 - _num2).toString();
-        notifyListeners();
+
         break;
       case '*':
         String _equation = (_num1 * _num2).toString();
@@ -94,7 +91,7 @@ class Model extends ChangeNotifier {
         } else {
           equation = _equation;
         }
-        notifyListeners();
+
         break;
       case '/':
         String _equation = (_num1 / _num2).toString();
@@ -103,7 +100,7 @@ class Model extends ChangeNotifier {
         } else {
           equation = _equation;
         }
-        notifyListeners();
+
         break;
     }
   }
