@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_calc/presentation/ui/widgets/button_widget.dart';
+import 'package:my_calc/presentation/bloc/calculator_bloc.dart';
 
-import '../../bloc/calculator_bloc.dart';
+import 'button_widget.dart';
 
 class PortraitModeWidget extends StatelessWidget {
   const PortraitModeWidget({
