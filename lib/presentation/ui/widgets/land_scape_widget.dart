@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_calc/presentation/ui/widgets/button_landscape.dart';
 import 'package:my_calc/res/image_res.dart';
-import 'package:my_calc/presentation/ui/widgets/button_widget.dart';
 
 import '../../bloc/calculator_bloc.dart';
 
@@ -35,7 +34,7 @@ class LandScapeModeWidget extends StatelessWidget {
           const Expanded(
             child: Divider(),
           ),
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
             width: MediaQuery.of(context).size.width * 1,
             child: const CalculatorButtonsWidgetLandscope(),

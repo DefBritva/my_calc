@@ -31,7 +31,7 @@ class PortraitModeWidget extends StatelessWidget {
               },
             ),
           ),
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
             width: MediaQuery.of(context).size.width * 0.9,
             child: const CalculatorButtonsWidgetPortrait(),
@@ -82,7 +82,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
         ),
       ]),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0,
+        height: MediaQuery.of(context).size.height * 0.02,
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
@@ -109,7 +109,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
         ),
       ]),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0,
+        height: MediaQuery.of(context).size.height * 0.02,
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
@@ -136,7 +136,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
         ),
       ]),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0,
+        height: MediaQuery.of(context).size.height * 0.02,
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         const NumberButtonWidget(
@@ -163,7 +163,7 @@ class CalculatorButtonsWidgetPortrait extends StatelessWidget {
         )
       ]),
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0,
+        height: MediaQuery.of(context).size.height * 0.02,
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Padding(
